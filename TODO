@@ -1,0 +1,8 @@
+- Warning : This code is not tested and may explode if touched.  You have been warned!
+
+- This does not currently work on Solaris (well it works serving pages, but the process title does not change).  How can we change the process title on Solaris?
+    http://unix.derkeiler.com/Newsgroups/comp.unix.solaris/2003-09/0370.html
+- The display of the number of requests processed and queued does not currently work.  Shows '-' for now. Help?
+- Can the process title change itself back to 'idle' when not handling a current request?
+- can this be converted to a Rails plugin so it 'just works'?
+

@@ -1,0 +1,56 @@
+thin-proctitle
+
+homepage:    http://github.com/grempe/thin-proctitle/tree/master
+git repo :   git clone git://github.com/grempe/thin-proctitle.git
+
+Concept:
+Display as the *NIX process title what each of your Thin servers are doing.
+
+The idea for this was shamelessly stolen from:
+http://purefiction.net/mongrel_proctitle/
+
+You should be able to run 'ps' or 'top' on your *nix like system and see process output for your
+Thin servers that looks something like this:
+
+thin [10010/2/358]: handling 127.0.0.1: HEAD /feed/calendar/global/91/6de4
+|     |     | |     |        |          |
+|     |     | |     |        |          The current request (method and path)
+|     |     | |     |        The client IP
+|     |     | |     What it's doing
+|     |     | The number of requests processed during the server's lifetime
+|     |     The number of requests currently queued/being processed concurrently
+|     The port that Mongrel is serving
+The process name
+
+
+Usage:
+
+  Copy the thin_proctitle.ru file to RAILS_ROOT/config/thin_proctitle.ru
+
+  Modify the following variables in this file to fit your setup:
+
+    :root => '/your/rails/root/dir'
+    :environment => 'production'
+
+  Start your Thin server passing in the '--rackup' parameter which should look something like:
+
+    'thin start --rackup thin_proctitle.ru'
+
+    Tip:
+      See http://macournoyer.wordpress.com/2008/02/09/the-flexible-thin-anorexic-gymnast-that-democratized-deployment/
+
+  If you are using a Thin .yaml file for configuration you can also specify the rackup command there:
+
+    ...
+    rackup: config/thin_proctitle.ru
+    ...
+
+Thanks:
+
+Thanks to Marc-André Cournoyer (macournoyer) for writing Thin and for providing the sample code behind this.
+http://macournoyer.wordpress.com/2008/02/09/the-flexible-thin-anorexic-gymnast-that-democratized-deployment/
+http://groups.google.com/group/thin-ruby/browse_thread/thread/760efc9c7e33d717
+
+Authors:
+Marc-André Cournoyer (github: macournoyer)
+Glenn Rempe (github: grempe)
