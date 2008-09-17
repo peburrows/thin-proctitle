@@ -16,9 +16,6 @@ module Rack
       $0 = "thin [bookseller/#{env['SERVER_PORT']}/-/#{$count}]: idle"
       k
     end
-    def finish
-      $0 = "the file was finished serving"
-    end
     alias_method :old_call, :call
     alias_method :call, :new_call
   end
