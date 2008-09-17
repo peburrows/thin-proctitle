@@ -2,7 +2,7 @@ module Rack
 
   class Response
     def new_finish
-      $0 = "thin this is done"
+      $0 = "thin [#{$port}/-/#{$count}]: idle"
       old_finish
     end
     alias_method :old_finish, :finish
@@ -13,7 +13,7 @@ module Rack
     # for some reason, serving a file doesn't call the finish method...
     def new_call(env)
       k = old_call(env)
-      $0 = "thin [bookseller/#{env['SERVER_PORT']}/-/#{$count}]: idle"
+      $0 = "thin [#{env['SERVER_PORT']}/-/#{$count}]: idle"
       k
     end
     alias_method :old_call, :call
@@ -30,7 +30,7 @@ class ProcTitle
  
   def call(env)
     $count += 1
-    $mongrel_port = env['SERVER_PORT']
+    $port = env['SERVER_PORT']
     $0 = "thin [#{env['SERVER_PORT']}/-/#{$count}]: handling #{env['SERVER_NAME']}: #{env['REQUEST_METHOD']} #{env['PATH_INFO']}"
     @app.call(env)
   end
