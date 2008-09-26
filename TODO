@@ -5,4 +5,3 @@
 - The display of the number of requests processed and queued does not currently work.  Shows '-' for now. Help?
 - Can the process title change itself back to 'idle' when not handling a current request?
 - can this be converted to a Rails plugin so it 'just works'?
-
